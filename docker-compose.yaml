@@ -1,0 +1,21 @@
+services:
+  redis:
+    image: redis:bookworm
+    ports:
+      - "6379:6379"
+
+  onetimesecret:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      COLONEL: admin@example.com
+      HOST: localhost:3000
+      SSL: false
+      BUNDLE_INSTALL: true
+      RACK_ENV: production
+
+
