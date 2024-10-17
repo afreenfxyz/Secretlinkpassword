@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:2024"
     environment:
       REDIS_URL: redis://redis:6379/0
       COLONEL: admin@example.com
