@@ -13,6 +13,18 @@
               <router-link to="/account" class="underline" title="Your Account">{{ $t('web.COMMON.header_dashboard') }}</router-link> <span class="mx-0 text-gray-400">|</span>
               <router-link to="/logout" class="underline" title="Log out of Onetime Secret">{{ $t('web.COMMON.header_logout') }}</router-link>
             </template>
+
+            <template v-else>
+              <template v-if="authentication.enabled">
+                <router-link v-if="authentication.signup" to="/signup" title="Signup - Individual and Business plans" class="underline font-bold mx-0 px-0">{{ $t('web.COMMON.header_create_account') }}</router-link><span class="mx-0">|</span>
+                <router-link to="/about" title="About Onetime Secret" class="underline">{{ $t('web.COMMON.header_about') }}</router-link><span class="mx-0">|</span>
+
+                <router-link v-if="authentication.signin" to="/signin" title="Log in to Onetime Secret" class="underline">{{ $t('web.COMMON.header_sign_in') }}</router-link>
+              </template>
+
+              <router-link v-else to="/about" title="About Onetime Secret" class="underline">{{ $t('web.COMMON.header_about') }}</router-link>
+            </template>
+
           </nav>
 
         </div>

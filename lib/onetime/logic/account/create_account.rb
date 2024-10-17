@@ -40,34 +40,35 @@ module Onetime::Logic
       end
 
       def process
-
         @plan = OT::Plan.plan(planid)
         @cust = OT::Customer.create custid
-
+      
         cust.update_passphrase password
-        sess.custid = cust.custid
-        sess.save
-
+      
         @customer_role = if OT.conf[:colonels].member?(cust.custid)
                            'colonel'
                          else
                            'customer'
                          end
         cust.planid = @plan.planid
-        cust.verified = @autoverify.to_s
+        cust.verified = 'true'  # Directly set the account as verified
         cust.role = @customer_role.to_s
         cust.save
-
+      
         OT.info "[new-customer] #{cust.custid} #{cust.role} #{sess.ipaddress} #{plan.planid} #{sess.short_identifier}"
         OT::Logic.stathat_count("New Customers (OTS)", 1)
-
-        if autoverify
-          sess.set_info_message "Account created"
-        else
-          self.send_verification_email
-        end
-
+      
+        # Set an info message to inform the user their account has been created and verified
+        sess.set_info_message "Account created and verified successfully"
+      
+        # Remove or modify the verification email logic since it's being skipped
+        # if autoverify
+        #   sess.set_info_message "Account created"
+        # else
+        #   self.send_verification_email
+        # end
       end
+      
 
       private
 
