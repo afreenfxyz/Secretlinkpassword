@@ -14,7 +14,7 @@ services:
       REDIS_URL: redis://redis:6379/0
       COLONEL: admin@example.com
       HOST: localhost:3000
-      SSL: true
+      SSL: false
       # BUNDLE_INSTALL: true
       RACK_ENV: production
 
