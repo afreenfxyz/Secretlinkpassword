@@ -13,7 +13,7 @@ services:
     environment:
       REDIS_URL: redis://redis:6379/0
       COLONEL: admin@example.com
-      HOST: secretlink.resmed.com
+      HOST: localhost:2024
       SSL: true
       # BUNDLE_INSTALL: true
       RACK_ENV: production
