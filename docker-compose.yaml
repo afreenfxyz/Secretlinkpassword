@@ -9,11 +9,11 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:2024"
+      - "3000:3000"
     environment:
       REDIS_URL: redis://redis:6379/0
       COLONEL: admin@example.com
-      HOST: localhost:2024
+      HOST: localhost:3000
       SSL: true
       # BUNDLE_INSTALL: true
       RACK_ENV: production
